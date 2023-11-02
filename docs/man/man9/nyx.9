@@ -1,0 +1,347 @@
+
+.\"*******************************************************************
+.\"
+.\" This file was extracted from hal/drivers/nyx.comp using halcompile.g.
+.\" Modify the source file.
+.\"
+.\"*******************************************************************
+
+.TH NYX "9" "2023-10-24" "LinuxCNC Documentation" "HAL Component"
+.SH NAME
+
+nyx \- YxxxxP servo interface card driver
+.SH SYNOPSIS
+.HP
+.B loadrt nyx personality=\fIP\fB
+.SH FUNCTIONS
+.TP
+\fBnyx.\fIN\fB\fR (requires a floating-point thread)
+
+.TP
+\fBnyx.\fIN\fB.rd\fR (requires a floating-point thread)
+
+.TP
+\fBnyx.\fIN\fB.wr\fR (requires a floating-point thread)
+
+.SH PINS
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.online\fR bit out  (MM=00..personality) \fR
+drive detected
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.offline\fR bit out  (MM=00..personality) \fR(default: \fI1\fR)
+no drive detected
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.ready\fR bit out  (MM=00..personality) \fR
+READY ON
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.enabled\fR bit out  (MM=00..personality) \fR
+SERVO ON
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.alarm\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.warning\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.alarm-code\fR u32 out  (MM=00..personality) \fR
+amp display, in hex
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.zero-speed\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.in-position\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.at-speed\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.absolute\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.abs-lost\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.abs-ok\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.z-passed\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.counts\fR s32 out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.counts-hi\fR s32 out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.counts-cmd\fR s32 out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.counts-cmd-hi\fR s32 out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.z-offs\fR s32 out  (MM=00..personality) \fR
+set with z-index passed
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.z-revs\fR float out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.z-offs-delay\fR s32 in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.power\fR bit in  (MM=00..personality) \fR
+turn on power relay
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.enable\fR bit in  (MM=00..personality) \fR
+turn on servo
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.reset-alarm\fR bit in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.forward-torque\fR float in  (MM=00..personality) \fR(default: \fI300.0\fR)
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.reverse-torque\fR float in  (MM=00..personality) \fR(default: \fI300.0\fR)
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.limit-torque\fR bit in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.torque-clamped\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.pos-cmd\fR float in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.pos-fb\fR float out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.velocity-mode\fR bit in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.vel-cmd\fR float in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.vel-fb\fR float out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.trq-fb\fR float out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.droop\fR s32 out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.mon1\fR s32 out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.mon2\fR s32 out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.mon\fR u32 in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.error-cnt\fR s32 out  (MM=00..personality) \fR
+drive feedback error count
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.spindle-fwd\fR bit in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.spindle-rev\fR bit in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.spindle-orient\fR bit in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.spindle-orienting\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.spindle-oriented\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.spindle-lcoil\fR bit in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.spindle-in-coil-change\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.spindle-in-lcoil\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.in-00\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.in-01\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.in-02\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.in-00-not\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.in-01-not\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.in-02-not\fR bit out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.out-00\fR bit in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.out-01\fR bit in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.out-02\fR bit in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.dbg\fR s32 out  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.index-enable\fR bit io  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.undroop\fR bit in  (MM=00..personality) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.ready\fR bit out \fR
+card is in sync with NC
+.TP
+.B nyx.\fIN\fB.phase\fR float out \fR
+sync pulse deviation, periods
+.TP
+.B nyx.\fIN\fB.error-cnt\fR s32 out \fR
+missed comm cycles when not in sync
+.TP
+.B nyx.\fIN\fB.dbg0\fR s32 out \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.dbg1\fR s32 out \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.dbg2\fR s32 out \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.dbg3\fR u32 out \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.in-\fIMM\fB\fR bit out  (MM=00..28) \fR
+CN1 inputs
+.TP
+.B nyx.\fIN\fB.in-\fIMM\fB-not\fR bit out  (MM=00..28) \fR
+CN1 inputs, inverted
+.TP
+.B nyx.\fIN\fB.out-\fIMM\fB\fR bit in  (MM=00..07) \fR
+CN3 outputs
+.TP
+.B nyx.\fIN\fB.encoder-\fIMM\fB.index-enable\fR bit io  (MM=00..05) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.encoder-\fIMM\fB.pos\fR float out  (MM=00..05) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.encoder-\fIMM\fB.velocity\fR float out  (MM=00..05) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.encoder-\fIMM\fB.velocity-rps\fR float out  (MM=00..05) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.encoder-\fIMM\fB.counts\fR s32 out  (MM=00..05) \fR
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.dac-\fIMM\fB.value\fR float in  (MM=00..01) \fR
+.SH PARAMETERS
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.origin\fR s32 rw  (MM=00..personality) \fR(default: \fI0\fR)
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.pos-scale\fR float rw  (MM=00..personality) \fR(default: \fI5.0\fR)
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.vel-scale\fR float rw  (MM=00..personality) \fR(default: \fI10.0\fR)
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.servo-\fIMM\fB.trq-scale\fR float rw  (MM=00..personality) \fR(default: \fI1.0\fR)
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.encoder-\fIMM\fB.cpr\fR float rw  (MM=00..05) \fR(default: \fI10000\fR)
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.encoder-\fIMM\fB.min-speed-estimate\fR float rw  (MM=00..05) \fR(default: \fI1.0\fR)
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.encoder-\fIMM\fB.x4-mode\fR bit rw  (MM=00..05) \fR(default: \fI1\fR)
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.dac-\fIMM\fB.scale\fR float rw  (MM=00..01) \fR(default: \fI1.0\fR)
+.br
+.ns
+.TP
+.B nyx.\fIN\fB.dac-\fIMM\fB.bias\fR float rw  (MM=00..01) \fR(default: \fI0.0\fR)
+.SH LICENSE
+
+GPL

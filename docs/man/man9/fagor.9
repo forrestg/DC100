@@ -1,0 +1,69 @@
+
+.\"*******************************************************************
+.\"
+.\" This file was extracted from hal/components/fagor.comp using halcompile.g.
+.\" Modify the source file.
+.\"
+.\"*******************************************************************
+
+.TH FAGOR "9" "2023-10-24" "LinuxCNC Documentation" "HAL Component"
+.SH NAME
+
+fagor \- FAGOR op panel rotary switch handler
+.SH SYNOPSIS
+.HP
+.B loadrt fagor [count=\fIN\fB|names=\fIname1\fB[,\fIname2...\fB]]
+.SH FUNCTIONS
+.TP
+\fBfagor.\fIN\fB\fR (requires a floating-point thread)
+
+.SH PINS
+.TP
+.B fagor.\fIN\fB.sw-in\fR s32 in \fR
+.br
+.ns
+.TP
+.B fagor.\fIN\fB.rapid-in\fR bit in \fR
+.br
+.ns
+.TP
+.B fagor.\fIN\fB.jog-x-selected\fR bit in \fR
+.br
+.ns
+.TP
+.B fagor.\fIN\fB.jog-z-selected\fR bit in \fR
+.br
+.ns
+.TP
+.B fagor.\fIN\fB.feed-override\fR s32 out \fR
+.br
+.ns
+.TP
+.B fagor.\fIN\fB.jog\fR bit out \fR
+.br
+.ns
+.TP
+.B fagor.\fIN\fB.jog-speed\fR float out \fR
+.br
+.ns
+.TP
+.B fagor.\fIN\fB.mpg\fR bit out \fR
+.br
+.ns
+.TP
+.B fagor.\fIN\fB.mpg-scale\fR float out \fR
+.br
+.ns
+.TP
+.B fagor.\fIN\fB.jog-x-enable\fR bit out \fR
+.br
+.ns
+.TP
+.B fagor.\fIN\fB.jog-z-enable\fR bit out \fR
+.br
+.ns
+.TP
+.B fagor.\fIN\fB.off\fR bit out \fR
+.SH LICENSE
+
+GPL

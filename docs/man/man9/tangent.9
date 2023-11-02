@@ -1,0 +1,49 @@
+
+.\"*******************************************************************
+.\"
+.\" This file was extracted from hal/components/tangent.comp using halcompile.g.
+.\" Modify the source file.
+.\"
+.\"*******************************************************************
+
+.TH TANGENT "9" "2023-10-24" "LinuxCNC Documentation" "HAL Component"
+.SH NAME
+
+tangent \- Output trajectory tangent angle in degrees
+.SH SYNOPSIS
+.HP
+.B loadrt tangent [count=\fIN\fB|names=\fIname1\fB[,\fIname2...\fB]]
+.SH FUNCTIONS
+.TP
+\fBtangent.\fIN\fB\fR (requires a floating-point thread)
+
+.SH PINS
+.TP
+.B tangent.\fIN\fB.x\fR float in \fR
+.br
+.ns
+.TP
+.B tangent.\fIN\fB.y\fR float in \fR
+.br
+.ns
+.TP
+.B tangent.\fIN\fB.follow\fR bit in \fR
+.br
+.ns
+.TP
+.B tangent.\fIN\fB.a\fR float out \fR
+.br
+.ns
+.TP
+.B tangent.\fIN\fB.a360\fR float out \fR
+.br
+.ns
+.TP
+.B tangent.\fIN\fB.homed\fR bit in \fR
+.br
+.ns
+.TP
+.B tangent.\fIN\fB.enable\fR bit in \fR
+.SH LICENSE
+
+GPL

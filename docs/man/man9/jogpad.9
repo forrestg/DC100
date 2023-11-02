@@ -1,0 +1,51 @@
+
+.\"*******************************************************************
+.\"
+.\" This file was extracted from hal/components/jogpad.comp using halcompile.g.
+.\" Modify the source file.
+.\"
+.\"*******************************************************************
+
+.TH JOGPAD "9" "2023-10-24" "LinuxCNC Documentation" "HAL Component"
+.SH NAME
+
+jogpad \- Hardware jog buttons + 2 GP keys
+.SH SYNOPSIS
+.HP
+.B loadrt jogpad [count=\fIN\fB|names=\fIname1\fB[,\fIname2...\fB]]
+.SH FUNCTIONS
+.TP
+\fBjogpad.\fIN\fB\fR (requires a floating-point thread)
+
+.SH PINS
+.TP
+.B jogpad.\fIN\fB.enable\fR bit in \fR
+.br
+.ns
+.TP
+.B jogpad.\fIN\fB.up\fR bit in \fR
+Y- button
+.TP
+.B jogpad.\fIN\fB.down\fR bit in \fR
+Y+ button
+.TP
+.B jogpad.\fIN\fB.left\fR bit in \fR
+X+ button
+.TP
+.B jogpad.\fIN\fB.right\fR bit in \fR
+X- button
+.TP
+.B jogpad.\fIN\fB.shift\fR bit in \fR
+alternate functions: Z+,Z-,A+,A-
+.TP
+.B jogpad.\fIN\fB.jog-counts-\fIM\fB\fR s32 out  (M=0..3) \fR
+joints 0..3, max step 100 counts per period
+.TP
+.B jogpad.\fIN\fB.jogging\fR bit out \fR
+jog enable output
+.SH PARAMETERS
+.TP
+.B jogpad.\fIN\fB.accel-time\fR float rw \fR(default: \fI1.0\fR)
+.SH LICENSE
+
+GPL

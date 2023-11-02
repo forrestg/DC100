@@ -1,0 +1,15 @@
+emc/iotask/ioControl_v2.cc:            update_status(RCS_DONE, emcioCommand->serial_number + 1);
+emc/iotask/ioControl_v2.cc:            update_status(RCS_EXEC, emcioCommand->serial_number);
+emc/iotask/ioControl_v2.cc:                update_status(RCS_ERROR, emcioCommand->serial_number);
+emc/iotask/ioControl_v2.cc:                update_status(RCS_EXEC, emcioCommand->serial_number);
+emc/iotask/ioControl_v2.cc:            update_status(RCS_DONE, emcioCommand->serial_number);
+emc/iotask/ioControl_v2.cc:            0 == emcioCommand->type ||        // bad command type
+emc/iotask/ioControl_v2.cc:            emcioCommand->serial_number == emcioStatus.echo_serial_number) {        // command already finished
+emc/iotask/ioControl_v2.cc:        type = emcioCommand->type;
+emc/iotask/ioControl_v2.cc:        emcioStatus.echo_serial_number = emcioCommand->serial_number;
+emc/iotask/ioControl.cc:                emcioCommand->serial_number+1; //need for different serial number, because we are pushing a new message
+emc/iotask/ioControl.cc:                emcioCommand->serial_number;
+emc/iotask/ioControl.cc:            0 == emcioCommand->type ||        // bad command type
+emc/iotask/ioControl.cc:            emcioCommand->serial_number == emcioStatus.echo_serial_number) {        // command already finished
+emc/iotask/ioControl.cc:        type = emcioCommand->type;
+emc/iotask/ioControl.cc:        emcioStatus.echo_serial_number = emcioCommand->serial_number;

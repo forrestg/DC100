@@ -329,6 +329,7 @@ toolidx_t tooldata_get(CANON_TOOL_TABLE* pdata, int idx) //idx = idx
         exit(EXIT_FAILURE);
     }
     if (idx < 0 || idx >= CANON_POCKETS_MAX) {
+        fprintf(stderr,"Tool number %i not mmapped \n", idx);
         UNEXPECTED_MSG;
         return IDX_FAIL;
     }

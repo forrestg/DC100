@@ -1,0 +1,53 @@
+
+.\"*******************************************************************
+.\"
+.\" This file was extracted from hal/components/yop.comp using halcompile.g.
+.\" Modify the source file.
+.\"
+.\"*******************************************************************
+
+.TH YOP "9" "2023-10-24" "LinuxCNC Documentation" "HAL Component"
+.SH NAME
+
+yop \- YOP rotary switch handler
+.SH SYNOPSIS
+.HP
+.B loadrt yop [count=\fIN\fB|names=\fIname1\fB[,\fIname2...\fB]]
+.SH FUNCTIONS
+.TP
+\fByop.\fIN\fB\fR (requires a floating-point thread)
+
+.SH PINS
+.TP
+.B yop.\fIN\fB.sw-in\fR s32 in \fR
+.br
+.ns
+.TP
+.B yop.\fIN\fB.rapid-in\fR bit in \fR
+.br
+.ns
+.TP
+.B yop.\fIN\fB.feed-override\fR s32 out \fR
+.br
+.ns
+.TP
+.B yop.\fIN\fB.jog\fR bit out \fR
+.br
+.ns
+.TP
+.B yop.\fIN\fB.jog-speed\fR float out \fR
+.br
+.ns
+.TP
+.B yop.\fIN\fB.mpg\fR bit out \fR
+.br
+.ns
+.TP
+.B yop.\fIN\fB.mpg-scale\fR float out \fR
+.br
+.ns
+.TP
+.B yop.\fIN\fB.off\fR bit out \fR
+.SH LICENSE
+
+GPL

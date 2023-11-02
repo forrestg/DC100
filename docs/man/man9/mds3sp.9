@@ -1,0 +1,156 @@
+
+.\"*******************************************************************
+.\"
+.\" This file was extracted from hal/components/mds3sp.comp using halcompile.g.
+.\" Modify the source file.
+.\"
+.\"*******************************************************************
+
+.TH MDS3SP "9" "2023-10-24" "LinuxCNC Documentation" "HAL Component"
+.SH NAME
+
+mds3sp \- MDS-D/E-SP spindle interface
+.SH SYNOPSIS
+.HP
+.B loadrt mds3sp [count=\fIN\fB|names=\fIname1\fB[,\fIname2...\fB]]
+.SH DESCRIPTION
+
+
+sample use:
+
+loadrt mds3sp
+addf mds3sp.0 servo-thread
+
+setp mds3sp.0.accel 3000
+setp mds3sp.0.max-speed 8000
+net s-vel-fb     spindle.0.speed-in       <= nyx.0.servo-05.vel-fb
+net s-vel        spindle.0.speed-out      => mds3sp.0.speed-in
+net s-at-speed   spindle.0.at-speed       <= mds3sp.0.at-speed-out
+net s-enable     nyx.0.servo-05.enable    <= mds3sp.0.amp-enable-out
+net s-pos-cmd    nyx.0.servo-05.pos-cmd   <= mds3sp.0.pos-cmd-out
+net s-pos-fb     nyx.0.servo-05.pos-fb    => mds3sp.0.pos-fb-in
+
+net s-z-revs     nyx.0.servo-05.z-revs    => mds3sp.0.z-revs-in
+net s-z-reset    nyx.0.servo-05.spindle-orient <= mds3sp.0.z-reset-out
+net s-z-complete nyx.0.servo-05.spindle-oriented => mds3sp.0.z-complete-in
+setp mds3sp.0.at-speed-in 1
+
+net s-revs       spindle.0.revs           <= mds3sp.0.revs-out
+net s-index      spindle.0.index-enable  <=> mds3sp.0.index-enable
+
+setp nyx.0.servo-05.velocity-mode 0
+
+net s-orient   spindle.0.orient           => mds3sp.0.orient-in
+net s-locked   spindle.0.locked           => mds3sp.0.orient-locked-in
+net s-oriented spindle.0.is-oriented      <= mds3sp.0.is-oriented-out
+net s-orient-a spindle.0.orient-angle     => mds3sp.0.orient-angle-in
+net s-in-pos   nyx.0.servo-05.in-position => mds3sp.0.in-position-in
+
+.SH FUNCTIONS
+.TP
+\fBmds3sp.\fIN\fB\fR (requires a floating-point thread)
+
+.SH PINS
+.TP
+.B mds3sp.\fIN\fB.accel\fR float in \fR(default: \fI1000\fR)
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.speed-in\fR float in \fR
+from spindle.X.speed-out
+.TP
+.B mds3sp.\fIN\fB.max-speed\fR float in \fR(default: \fI8000\fR)
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.amp-enable-out\fR bit out \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.pos-fb-in\fR float in \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.pos-cmd-out\fR float out \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.at-speed-in\fR bit in \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.at-speed-out\fR bit out \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.in-position-in\fR bit in \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.z-passed-in\fR bit in \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.z-reset-out\fR bit out \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.z-complete-in\fR bit in \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.z-revs-in\fR float in \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.index-enable\fR bit io \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.revs-out\fR float out \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.orient-speed\fR float in \fR(default: \fI500\fR)
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.orient-angle-in\fR float in \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.orient-mode-in\fR s32 in \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.orient-in\fR bit in \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.is-oriented-out\fR bit out \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.orient-fault-out\fR bit out \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.orient-locked-in\fR bit in \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.overspeed-out\fR bit out \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.speed\fR float out \fR
+.br
+.ns
+.TP
+.B mds3sp.\fIN\fB.orient-stage\fR s32 out \fR
+.SH AUTHOR
+
+Dmitry Yurtaev dmitry@yurtaev.com
+.SH LICENSE
+
+GPL

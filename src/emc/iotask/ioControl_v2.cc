@@ -1202,12 +1202,13 @@ int main(int argc, char *argv[])
 
         case EMC_TOOL_SET_OFFSET_TYPE:
             {
-                int idx, toolno, o;
+                int idx, toolno, o, pocketno;
                 double d, f, b;
                 EmcPose offs;
 
-                idx    = ((EMC_TOOL_SET_OFFSET *) emcioCommand)->pocket;
-                toolno = ((EMC_TOOL_SET_OFFSET *) emcioCommand)->toolno;
+		idx = tooldata_find_index_for_tool(((EMC_TOOL_SET_OFFSET *) emcioCommand)->toolno);
+                pocketno = ((EMC_TOOL_SET_OFFSET *) emcioCommand)->pocket;
+		toolno = ((EMC_TOOL_SET_OFFSET *) emcioCommand)->toolno;
                 offs   = ((EMC_TOOL_SET_OFFSET *) emcioCommand)->offset;
                 d = ((EMC_TOOL_SET_OFFSET *) emcioCommand)->diameter;
                 f = ((EMC_TOOL_SET_OFFSET *) emcioCommand)->frontangle;
@@ -1223,13 +1224,14 @@ int main(int argc, char *argv[])
                 if (tooldata_get(&tdata,idx) != IDX_OK) {
                     UNEXPECTED_MSG;
                 }
+                tdata.pocketno = pocketno;
                 tdata.toolno = toolno;
                 tdata.offset = offs;
                 tdata.diameter = d;
                 tdata.frontangle = f;
                 tdata.backangle = b;
                 tdata.orientation = o;
-                if (tooldata_put(tdata,idx) == IDX_FAIL) {
+                if (tooldata_put(tdata,tdata.toolno) == IDX_FAIL) {
                     UNEXPECTED_MSG;
                 }
                 if (0 != tooldata_save(io_tool_table_file, ttcomments)) {
@@ -1249,15 +1251,20 @@ int main(int argc, char *argv[])
             int idx;
 
             idx = ((EMC_TOOL_SET_NUMBER *) emcioCommand)->tool;
+            
             CANON_TOOL_TABLE tdata;
-            if (tooldata_get(&tdata,idx) != IDX_OK) {
-                UNEXPECTED_MSG;
+            if (!random_toolchanger){            
+				if (tooldata_get(&tdata,idx) != IDX_OK) {
+					UNEXPECTED_MSG;
+				}
+				load_tool(idx);
             }
-            load_tool(idx);
 
             if(random_toolchanger) {
-                fprintf(stderr,"Tool %i is in spindle\n",idx);
-		//emcioStatus.tool.toolInSpindle = idx;
+#ifdef DEBUG_RANDOM_TOOL_CHANGE				
+                fprintf(stderr,"M61 Tool %i is in spindle\n",idx);
+#endif               
+				emcioStatus.tool.toolInSpindle = idx;
             } else {
                 idx=0; // update spindle (fix legacy behavior)
                 if (tooldata_get(&tdata,idx) != IDX_OK) {

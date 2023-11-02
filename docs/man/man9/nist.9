@@ -1,0 +1,37 @@
+
+.\"*******************************************************************
+.\"
+.\" This file was extracted from hal/components/nist.comp using halcompile.g.
+.\" Modify the source file.
+.\"
+.\"*******************************************************************
+
+.TH NIST "9" "2023-10-24" "LinuxCNC Documentation" "HAL Component"
+.SH NAME
+
+nist \- pushbutton to nist
+.SH SYNOPSIS
+.HP
+.B loadrt nist [count=\fIN\fB|names=\fIname1\fB[,\fIname2...\fB]]
+.SH FUNCTIONS
+.TP
+\fBnist.\fIN\fB\fR (requires a floating-point thread)
+
+.SH PINS
+.TP
+.B nist.\fIN\fB.in\fR bit in \fR
+.br
+.ns
+.TP
+.B nist.\fIN\fB.is-on\fR bit in \fR
+.br
+.ns
+.TP
+.B nist.\fIN\fB.on\fR bit out \fR
+.br
+.ns
+.TP
+.B nist.\fIN\fB.off\fR bit out \fR
+.SH LICENSE
+
+GPL

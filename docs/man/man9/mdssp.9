@@ -1,0 +1,99 @@
+
+.\"*******************************************************************
+.\"
+.\" This file was extracted from hal/components/mdssp.comp using halcompile.g.
+.\" Modify the source file.
+.\"
+.\"*******************************************************************
+
+.TH MDSSP "9" "2023-10-24" "LinuxCNC Documentation" "HAL Component"
+.SH NAME
+
+mdssp \- MDS-A/B/C encoder interface
+.SH SYNOPSIS
+.HP
+.B loadrt mdssp [count=\fIN\fB|names=\fIname1\fB[,\fIname2...\fB]]
+.SH DESCRIPTION
+
+
+
+.SH FUNCTIONS
+.TP
+\fBmdssp.\fIN\fB\fR (requires a floating-point thread)
+
+.SH PINS
+.TP
+.B mdssp.\fIN\fB.spindle-counts-in\fR s32 in \fR
+raw 32-bit feedback position
+.TP
+.B mdssp.\fIN\fB.spindle-oriented-in\fR bit in \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.revs\fR float out \fR
+spindle position output, in revolution
+.TP
+.B mdssp.\fIN\fB.index-request\fR bit io \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.speed-in\fR float in \fR
+from spindle.X.speed-out
+.TP
+.B mdssp.\fIN\fB.speed-out-abs\fR float out \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.at-speed-in\fR bit in \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.at-speed-out\fR bit out \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.fwd\fR bit out \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.rev\fR bit out \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.pos-fb-in\fR float in \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.pos-cmd-out\fR float out \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.master-pos-cmd-in\fR float in \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.servo-on-in\fR bit in \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.servo-on-out\fR bit out \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.slave-on-in\fR bit in \fR
+.br
+.ns
+.TP
+.B mdssp.\fIN\fB.mode4\fR bit out \fR
+.SH PARAMETERS
+.TP
+.B mdssp.\fIN\fB.cpr\fR s32 r \fR(default: \fI23040000\fR)
+command/feedback resolution
+.TP
+.B mdssp.\fIN\fB.maxv\fR float rw \fR(default: \fI1000\fR)
+.SH AUTHOR
+
+Dmitry Yurtaev dmitry@yurtaev.com
+.SH LICENSE
+
+GPL

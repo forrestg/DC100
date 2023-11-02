@@ -1,0 +1,33 @@
+
+.\"*******************************************************************
+.\"
+.\" This file was extracted from hal/components/toggle2.comp using halcompile.g.
+.\" Modify the source file.
+.\"
+.\"*******************************************************************
+
+.TH TOGGLE2 "9" "2023-10-24" "LinuxCNC Documentation" "HAL Component"
+.SH NAME
+
+toggle2 \- level + toggle
+.SH SYNOPSIS
+.HP
+.B loadrt toggle2 [count=\fIN\fB|names=\fIname1\fB[,\fIname2...\fB]]
+.SH FUNCTIONS
+.TP
+\fBtoggle2.\fIN\fB\fR (requires a floating-point thread)
+
+.SH PINS
+.TP
+.B toggle2.\fIN\fB.in-on\fR bit in \fR
+.br
+.ns
+.TP
+.B toggle2.\fIN\fB.in-toggle\fR bit in \fR
+.br
+.ns
+.TP
+.B toggle2.\fIN\fB.out\fR bit out \fR
+.SH LICENSE
+
+GPL

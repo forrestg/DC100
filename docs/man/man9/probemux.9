@@ -1,0 +1,53 @@
+
+.\"*******************************************************************
+.\"
+.\" This file was extracted from hal/components/probemux.comp using halcompile.g.
+.\" Modify the source file.
+.\"
+.\"*******************************************************************
+
+.TH PROBEMUX "9" "2023-10-24" "LinuxCNC Documentation" "HAL Component"
+.SH NAME
+
+probemux \- 2 probex mux
+.SH SYNOPSIS
+.HP
+.B loadrt probemux [count=\fIN\fB|names=\fIname1\fB[,\fIname2...\fB]]
+.SH FUNCTIONS
+.TP
+\fBprobemux.\fIN\fB\fR
+
+.SH PINS
+.TP
+.B probemux.\fIN\fB.touch-in\fR bit in \fR
+.br
+.ns
+.TP
+.B probemux.\fIN\fB.height-in\fR bit in \fR
+.br
+.ns
+.TP
+.B probemux.\fIN\fB.decel-in\fR bit in \fR
+.br
+.ns
+.TP
+.B probemux.\fIN\fB.default-in\fR bit in \fR(default: \fI1\fR)
+.br
+.ns
+.TP
+.B probemux.\fIN\fB.touch-enable\fR bit in \fR
+.br
+.ns
+.TP
+.B probemux.\fIN\fB.height-enable\fR bit in \fR
+.br
+.ns
+.TP
+.B probemux.\fIN\fB.decel-enable\fR bit in \fR
+.br
+.ns
+.TP
+.B probemux.\fIN\fB.out\fR bit out \fR
+.SH LICENSE
+
+GPL

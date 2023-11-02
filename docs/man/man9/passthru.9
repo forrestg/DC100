@@ -1,0 +1,34 @@
+
+.\"*******************************************************************
+.\"
+.\" This file was extracted from hal/components/passthru.comp using halcompile.g.
+.\" Modify the source file.
+.\"
+.\"*******************************************************************
+
+.TH PASSTHRU "9" "2023-10-24" "LinuxCNC Documentation" "HAL Component"
+.SH NAME
+
+passthru \- LinuxCNC HAL pass-thru component, 16 pins max
+.SH SYNOPSIS
+.HP
+.B loadrt passthru [count=\fIN\fB|names=\fIname1\fB[,\fIname2...\fB]] [personality=\fIP,P,...\fB]
+.SH DESCRIPTION
+
+
+Pass signals from in-N pin to out-N
+
+.SH FUNCTIONS
+.TP
+\fBpassthru.\fIN\fB\fR
+
+.SH PINS
+.TP
+.B passthru.\fIN\fB.in-\fIMM\fB\fR bit in  (MM=00..personality & 0xff) \fR
+.br
+.ns
+.TP
+.B passthru.\fIN\fB.out-\fIMM\fB\fR bit out  (MM=00..personality & 0xff) \fR
+.SH LICENSE
+
+GPL
