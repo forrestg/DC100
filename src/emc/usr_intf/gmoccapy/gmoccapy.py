@@ -3100,7 +3100,7 @@ class gmoccapy(object):
             return True
 
         # mode change are only allowed if the interpreter is idle, like mode switching
-        if keyname == "F3" or keyname == "F5":
+        if keyname == "F3" or keyname == "F4" or keyname == "F5":
             if self.stat.interp_state != linuxcnc.INTERP_IDLE:
                 if signal: # Otherwise the message will be shown twice
                     self._show_error((13, _("Mode change is only allowed if the interpreter is idle!")))
@@ -3114,7 +3114,16 @@ class gmoccapy(object):
                     # only allowed in manual mode will finish the sub
                     self.last_key_event = keyname, signal
                     return True
-
+                
+                # F4 change to auto mode
+                if keyname == "F4" and signal:
+                    self.command.mode(linuxcnc.MODE_AUTO)
+                    self.command.wait_complete()
+                    # we need to leave here, otherwise the check for jogging
+                    # only allowed in manual mode will finish the sub
+                    self.last_key_event = keyname, signal
+                    return True
+                    
                 # F5 should change to mdi mode
                 if keyname == "F5" and signal:
                     self.command.mode(linuxcnc.MODE_MDI)
